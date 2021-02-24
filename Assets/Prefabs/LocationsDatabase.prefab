@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8591872755167787593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8591872755167787591}
+  - component: {fileID: 8591872755167787592}
+  m_Layer: 0
+  m_Name: LocationsDatabase
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8591872755167787591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591872755167787593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8591872755167787592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8591872755167787593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca397b99af4e4e44e91ee4d43a5001e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locations:
+  - locationName: Warehouse
+    locationID: 0
+    locationSprite: {fileID: 21300000, guid: cf815cb12c3012047bb1df65d639bde6, type: 3}
+  - locationName: Trainyard
+    locationID: 1
+    locationSprite: {fileID: 21300000, guid: 37765146ad4363a498916afe16819288, type: 3}
+  - locationName: Factory
+    locationID: 2
+    locationSprite: {fileID: 21300000, guid: 4f98cc117598b774794cf0b0f44a7ead, type: 3}
+  - locationName: Powerplant
+    locationID: 3
+    locationSprite: {fileID: 21300000, guid: 5ad88791ccc0bf440aac0142bf5fc19a, type: 3}
+  - locationName: Laboratories
+    locationID: 4
+    locationSprite: {fileID: 21300000, guid: 731844a319f6e8b4fab7eb77c6e05cec, type: 3}
