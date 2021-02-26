@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
     public int locationsLeft;
     public bool destroyLocations;
 
-    public int spawnedItemCount;
-    public int spawnedLocationCount;
-    public bool itemsCollected;    
+    // Variables used for controlling the game state. 
+    public int spawnedItemCount; // Holds the number of spawned items.
+    public int spawnedLocationCount; // Holds the number of locations currently on screen. 
+    public bool itemsCollected; // Cheks if player is done collecting items, when true allows for destruction of remaining location (the one that player picked) and restarts the the game loop.
     
+
     public void StateChange(bool itemsState)
     {
         itemsCollected = itemsState;

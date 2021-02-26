@@ -23,7 +23,7 @@ public class ItemsBehaviour : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = _items.itemSprite;
 
-        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>(); // This can certainly be substituted with Events and Delegates
 
 
     }
@@ -52,7 +52,7 @@ public class ItemsBehaviour : MonoBehaviour
 
                 if (_gameManager.spawnedItemCount < 1)
                 {
-                    _gameManager.itemsCollected = true;
+                    _gameManager.itemsCollected = true; // This needs to be changed to change the bool value via method
                 }
             }
 
