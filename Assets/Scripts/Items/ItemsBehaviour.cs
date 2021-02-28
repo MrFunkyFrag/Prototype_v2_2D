@@ -8,6 +8,8 @@ public class ItemsBehaviour : MonoBehaviour
     private Items _items;
     [SerializeField]
     private ItemsDatabase _itemsDatabase;
+    [SerializeField]
+    private Inventory _inventory;
 
     private SpriteRenderer _spriteRenderer;
     private GameManager _gameManager;
@@ -24,7 +26,7 @@ public class ItemsBehaviour : MonoBehaviour
         _spriteRenderer.sprite = _items.itemSprite;
 
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>(); // This can certainly be substituted with Events and Delegates
-
+        _inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
 
     }
 
@@ -45,8 +47,9 @@ public class ItemsBehaviour : MonoBehaviour
         {
             RaycastHit2D hit = Physics2D.Raycast(_cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
-            if (hit.collider != null && hit.collider.tag == "Item")
+            if (hit.collider != null && hit.collider.tag == "Item") // This tag is causing issues for the next line. It adds _items whichever is first in hierarchy no matter which object was clicked. 
             {
+                _inventory.AddItem(_items, 0);
                 Destroy(hit.collider.gameObject);
                 _gameManager.spawnedItemCount--; // Subtracts itemsCreated counter, which is used to control game sequence changes in GameManger.
 
@@ -57,6 +60,11 @@ public class ItemsBehaviour : MonoBehaviour
             }
 
         }
+    }
+
+    public Items GetItem()
+    {
+        return _items;
     }
 
 }

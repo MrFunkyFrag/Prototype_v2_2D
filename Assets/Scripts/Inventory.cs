@@ -6,6 +6,7 @@ public class Inventory : MonoBehaviour
 {
     private List<Items> _itemsList;
     private Items _item;
+    private Items _item2;
     [SerializeField]
     private ItemsDatabase _itemsDatabase;
 
@@ -24,9 +25,11 @@ public class Inventory : MonoBehaviour
     }
     
 
-    public void AddItem(Items item)
+    public void AddItem(Items item, int amount)
     {
         _itemsList.Add(item);
+        item.amount += amount;
+        _uiInventory.RefreshInventoryItems();
     }
 
     public List<Items> GetItemList()
@@ -41,9 +44,11 @@ public class Inventory : MonoBehaviour
     private void FunctionalityTest()
     {
         _item = _itemsDatabase.items[Random.Range(0, _itemsDatabase.items.Length)];
-        AddItem(_item);
-        AddItem(_item);
+        _item2 = _itemsDatabase.items[Random.Range(0, _itemsDatabase.items.Length)];
+        AddItem(_item, 23);
+        AddItem(_item2, 16);
         Debug.Log(_itemsList[0].itemName);
+        Debug.Log(_itemsList[0].amount);
     }
 
 }

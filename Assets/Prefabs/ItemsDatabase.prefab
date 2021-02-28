@@ -47,30 +47,40 @@ MonoBehaviour:
   - itemName: Food
     itemID: 0
     itemSprite: {fileID: 21300000, guid: c4cf99ea11a996445b04910294855f3b, type: 3}
+    amount: 0
   - itemName: Medicine
     itemID: 1
     itemSprite: {fileID: 21300000, guid: cbe076206c5131140a773ce52014ff62, type: 3}
+    amount: 0
   - itemName: Construction Materials
     itemID: 2
     itemSprite: {fileID: 21300000, guid: d22ab44853df3364d95a2f9d5424c485, type: 3}
+    amount: 0
   - itemName: Metal Parts
     itemID: 3
     itemSprite: {fileID: 21300000, guid: 42ee254f66d6a734a926b805e0927c4a, type: 3}
+    amount: 0
   - itemName: Electronics
     itemID: 4
     itemSprite: {fileID: 21300000, guid: 4d4d9bd45f8d5ad4fb7424a50330b567, type: 3}
+    amount: 0
   - itemName: Weapon Parts I
     itemID: 5
     itemSprite: {fileID: 21300000, guid: 3f8a0df03425ca841b014e706b6b89c2, type: 3}
+    amount: 0
   - itemName: Fabrics
     itemID: 6
     itemSprite: {fileID: 21300000, guid: fb06fc4541ad5074f8440857691821e9, type: 3}
+    amount: 0
   - itemName: Firestarters
     itemID: 7
     itemSprite: {fileID: 21300000, guid: a12aef44ec2f9a14a833ffaed4cad9b5, type: 3}
+    amount: 0
   - itemName: Ammo Pack
     itemID: 8
     itemSprite: {fileID: 21300000, guid: 94f77ee0f80f9df4f8c20036be4a3134, type: 3}
+    amount: 0
   - itemName: Fuel
     itemID: 9
     itemSprite: {fileID: 21300000, guid: 76a2b54ea6571a644990450f6b4e55d0, type: 3}
+    amount: 0

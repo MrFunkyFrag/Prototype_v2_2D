@@ -8,4 +8,5 @@ public class Items
     public string itemName;
     public int itemID;
     public Sprite itemSprite;
+    public int amount;
 }

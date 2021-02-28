@@ -9,28 +9,23 @@ public class UI_Inventory : MonoBehaviour
     private Inventory _inventory;
 
     [SerializeField]
-    private GameObject[] _itemImages;
+    private Image[] _itemImages;
+    [SerializeField]
+    private Text[] _itemAmount;
 
-    private Transform _inventoryFrame;
-    private Transform _itemSlot1;
-    private Image _itemSlot1image;
-
-    private void Start()
+    private void Awake()
     {
-        _inventoryFrame = transform.Find("Inventory Frame");
-        _itemSlot1 = _inventoryFrame.Find("ItemSlot1_img");
-        _itemSlot1image = _itemSlot1.Find("Item_img").GetComponent<Image>();
 
-        if (_inventory == null)
+        foreach (Image image in _itemImages)
         {
-            Debug.Log("No inventory");
-        }
-        else
-        {
-            Debug.Log(_inventory.gameObject.name);
+            image.GetComponent<Image>();
+            image.enabled = false;
         }
 
-        RefreshInventoryItems();
+        foreach (Text text in _itemAmount)
+        {
+            text.GetComponent<Text>();
+        }
     }
 
     /*public void SetInventory(Inventory inventory)
@@ -38,16 +33,23 @@ public class UI_Inventory : MonoBehaviour
         _inventory = inventory;
     }*/
 
-    private void RefreshInventoryItems()
+    public void RefreshInventoryItems()
     {
-        foreach (Items item in _inventory.GetItemList())
+        for (int i = 0; i < _inventory.GetItemList().Count; i++)
         {
-            if (_itemSlot1image.sprite == null) // prevents substituting image if slot is already taken
+            if (_itemImages[i].sprite == null) // prevents substituting image if slot is already taken
             {
-                _itemSlot1image.sprite = item.itemSprite;
+                _itemImages[i].enabled = true;
+                _itemImages[i].sprite = _inventory.GetItemList()[i].itemSprite;
+                _itemAmount[i].text = _inventory.GetItemList()[i].amount.ToString();
+            }
+            else if (_itemImages[i].sprite == _inventory.GetItemList()[i].itemSprite) // if it's the same item - update its amount? NOT TESTED
+            {
+                _itemAmount[i].text = _inventory.GetItemList()[i].amount.ToString();
             }
             
-        }
+        } 
+        
     }
  
 }
