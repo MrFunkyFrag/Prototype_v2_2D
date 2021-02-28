@@ -46,10 +46,12 @@ public class ItemsBehaviour : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             RaycastHit2D hit = Physics2D.Raycast(_cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            
 
-            if (hit.collider != null && hit.collider.tag == "Item") // This tag is causing issues for the next line. It adds _items whichever is first in hierarchy no matter which object was clicked. 
+            if (hit.collider != null && hit.collider.tag == "Item") // This tag is causing issues for the next line. It adds _items whichever is first in the hierarchy no matter which object was clicked. 
             {
-                _inventory.AddItem(_items, 0);
+                Items clickedItem = hit.collider.gameObject.GetComponent<ItemsBehaviour>()._items;
+                _inventory.AddItem(clickedItem, 1);
                 Destroy(hit.collider.gameObject);
                 _gameManager.spawnedItemCount--; // Subtracts itemsCreated counter, which is used to control game sequence changes in GameManger.
 

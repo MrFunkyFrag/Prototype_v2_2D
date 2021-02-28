@@ -79,7 +79,7 @@ MonoBehaviour:
   - itemName: Ammo Pack
     itemID: 8
     itemSprite: {fileID: 21300000, guid: 94f77ee0f80f9df4f8c20036be4a3134, type: 3}
-    amount: 0
+    amount: 1
   - itemName: Fuel
     itemID: 9
     itemSprite: {fileID: 21300000, guid: 76a2b54ea6571a644990450f6b4e55d0, type: 3}
