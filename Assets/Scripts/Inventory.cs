@@ -21,14 +21,26 @@ public class Inventory : MonoBehaviour
         /*_inventory = new Inventory();        
         _uiInventory.SetInventory(_inventory);*/
 
-        FunctionalityTest();
+        //FunctionalityTest();
     }
     
 
-    public void AddItem(Items item, int amount)
+    public void AddItem(Items item)
     {
-        _itemsList.Add(item);
-        item.amount += amount;
+        bool itemAlreadyInInventory = false;
+        foreach (Items inventoryItems in _itemsList)
+        {
+            if (inventoryItems.itemID == item.itemID)
+            {
+                inventoryItems.amount++;
+                itemAlreadyInInventory = true;
+            }
+        }
+        if (!itemAlreadyInInventory)
+        {
+            _itemsList.Add(item);
+        }
+        
         _uiInventory.RefreshInventoryItems();
     }
 
@@ -45,8 +57,8 @@ public class Inventory : MonoBehaviour
     {
         _item = _itemsDatabase.items[Random.Range(0, _itemsDatabase.items.Length)];
         _item2 = _itemsDatabase.items[Random.Range(0, _itemsDatabase.items.Length)];
-        AddItem(_item, 23);
-        AddItem(_item2, 16);
+        AddItem(_item);
+        AddItem(_item2);
         Debug.Log(_itemsList[0].itemName);
         Debug.Log(_itemsList[0].amount);
     }

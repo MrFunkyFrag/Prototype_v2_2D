@@ -51,7 +51,7 @@ public class ItemsBehaviour : MonoBehaviour
             if (hit.collider != null && hit.collider.tag == "Item") // This tag is causing issues for the next line. It adds _items whichever is first in the hierarchy no matter which object was clicked. 
             {
                 Items clickedItem = hit.collider.gameObject.GetComponent<ItemsBehaviour>()._items;
-                _inventory.AddItem(clickedItem, 1);
+                _inventory.AddItem(clickedItem);
                 Destroy(hit.collider.gameObject);
                 _gameManager.spawnedItemCount--; // Subtracts itemsCreated counter, which is used to control game sequence changes in GameManger.
 
