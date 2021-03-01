@@ -101,8 +101,8 @@ MonoBehaviour:
     itemID: 0
     itemSprite: {fileID: 0}
     amount: 0
-  _itemsDatabase: {fileID: 1692862655302773780, guid: d4e08dd10ef3f74448a1e0eab28d294b, type: 3}
-  inventory: {fileID: 0}
+  _itemsDatabase: {fileID: 0}
+  _inventory: {fileID: 0}
 --- !u!61 &-1980452714041089630
 BoxCollider2D:
   m_ObjectHideFlags: 0

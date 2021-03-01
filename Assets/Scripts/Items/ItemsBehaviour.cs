@@ -18,6 +18,8 @@ public class ItemsBehaviour : MonoBehaviour
 
     void Start()
     {
+        _itemsDatabase = GameObject.Find("ItemsDatabase").GetComponent<ItemsDatabase>();
+
         _cam = Camera.main; // Asigning in the Start to reduce cost.
 
        _items = _itemsDatabase.items[Random.Range(0, _itemsDatabase.items.Length)];    // Assigns random items from the ItemsDatabase
@@ -26,7 +28,7 @@ public class ItemsBehaviour : MonoBehaviour
         _spriteRenderer.sprite = _items.itemSprite;
 
         _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>(); // This can certainly be substituted with Events and Delegates
-        _inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
+        _inventory = GameObject.Find("Inventory").GetComponent<Inventory>();        
 
     }
 

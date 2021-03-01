@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public bool _isPlayerChosingLocations;
-    public bool _isPlayerCollectingItems;
-        
-    public int itemsCreated = 3;
-    public int locationsLeft;
-    public bool destroyLocations;
-
     // Variables used for controlling the game state. 
     public int spawnedItemCount; // Holds the number of spawned items.
     public int spawnedLocationCount; // Holds the number of locations currently on screen. 
