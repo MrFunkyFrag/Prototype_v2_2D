@@ -29,7 +29,7 @@ public class Inventory : MonoBehaviour
     {
         bool itemAlreadyInInventory = false;
         foreach (Items inventoryItems in _itemsList)
-        {
+        {            
             if (inventoryItems.itemID == item.itemID)
             {
                 inventoryItems.amount++;
@@ -43,6 +43,49 @@ public class Inventory : MonoBehaviour
         
         _uiInventory.RefreshInventoryItems();
     }
+
+    public void RemoveItem()
+    {
+        if (_itemsList.Count > 0)
+        {
+            if (_itemsList[0].amount >= 2 && _itemsList[0].itemSprite == _uiInventory.GetItemImageList()[0].sprite)
+            {
+                _itemsList[0].amount--;
+
+            }
+            else if (_itemsList[0].amount <= 1 && _itemsList[0].itemSprite == _uiInventory.GetItemImageList()[0].sprite)
+            {
+                _itemsList.RemoveAt(0);
+            }
+        }
+
+        if (_itemsList.Count == 0)
+        {
+            _uiInventory.RemoveLastUIItem();
+        }
+
+        _uiInventory.RefreshInventoryItems();
+
+    }
+
+    /*public void RemoveItem(Items item)
+    {
+        Items itemInInventory = null;
+        foreach (Items inventoryItems in _itemsList)
+        {
+            if (inventoryItems.itemID == item.itemID)
+            {
+                inventoryItems.amount--;
+                itemInInventory = inventoryItems;
+            }
+        }
+        if (itemInInventory != null && itemInInventory.amount <= 0)
+        {
+            _itemsList.Remove(itemInInventory);
+        }
+
+        _uiInventory.RefreshInventoryItems();
+    }*/
 
     public List<Items> GetItemList()
     {
