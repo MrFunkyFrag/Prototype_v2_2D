@@ -1,3 +1,4 @@
+using CodeMonkey.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,83 +6,76 @@ using UnityEngine.UI;
 
 public class UI_Inventory : MonoBehaviour
 {
-    [SerializeField]
-    private Inventory _inventory;
 
-    [SerializeField]
-    private Image[] _itemImages;
-    [SerializeField]
-    private Text[] _itemAmount;
+    [SerializeField] private Inventory _inventory;
+    [SerializeField] private ItemsDatabase _itemsDatabase;
 
-    private void Awake()
+    private Transform _itemsContainer;
+    private Transform _inventoryItemTemplate;
+
+    private void Start()
     {
-
-        foreach (Image image in _itemImages)
-        {
-            image.GetComponent<Image>();
-            image.enabled = false;
-        }
-
-        foreach (Text text in _itemAmount)
-        {
-            text.GetComponent<Text>();
-        }
+        _itemsContainer = transform.Find("ItemsContainer");
+        _inventoryItemTemplate = _itemsContainer.Find("InventoryItemTemplate");
         
     }
 
-    /*public void SetInventory(Inventory inventory)
+    private void Inventory_OnItemsListChanged(object sender, System.EventArgs eventArgs)
     {
-        _inventory = inventory;
-    }*/
+        throw new System.NotImplementedException();
+    }
 
     public void RefreshInventoryItems()
     {
-        for (int i = 0; i < _inventory.GetItemList().Count; i++)
+        foreach (Transform child in _itemsContainer)
         {
-            if (_itemImages[i].sprite != null && _inventory.GetItemList()[i].itemSprite != _itemImages[i].sprite) // Remove image if sprite in list at index i is different from sprite in inventory (to be used upon removing items from the list); NOT TESTED YET
-            {
-                _itemImages[i].enabled = false;
-                _itemImages[i].sprite = null;
-                _itemAmount[i].text = "";
-
-                // WIP remove last sprite from inventory
-                int x = _inventory.GetItemList().Count;
-                _itemImages[x].enabled = false;
-                _itemImages[x].sprite = null;
-                _itemAmount[x].text = "";
-                                
-                RefreshInventoryItems();
-            }
-            else if (_itemImages[i].sprite == null) // prevents substituting image if slot is already taken
-            {
-                _itemImages[i].enabled = true;
-                _itemImages[i].sprite = _inventory.GetItemList()[i].itemSprite;
-                _itemAmount[i].text = _inventory.GetItemList()[i].amount.ToString();
-               
-            }
-            else if (_itemImages[i].sprite == _inventory.GetItemList()[i].itemSprite) // if it's the same item - update its amount
-            {
-                _itemAmount[i].text = _inventory.GetItemList()[i].amount.ToString();
-            }
-            
+            if (child == _inventoryItemTemplate) continue;
+            Destroy(child.gameObject);
         }
 
-    }   
+        float x = 0;
+        float y = 0;
+        float itemSlotCellSizeX = 80f;
+        float itemSlotCellSizeY = -75f;
+        foreach (Items item in _inventory.GetItemList())
+        {
+            RectTransform itemSlotRectTransform = Instantiate(_inventoryItemTemplate, _itemsContainer).GetComponent<RectTransform>();
+            itemSlotRectTransform.gameObject.SetActive(true);
 
-    public void RemoveLastUIItem()
-    {
-        _itemImages[0].enabled = false;
-        _itemImages[0].sprite = null;        
-        _itemAmount[0].text = "";
+            itemSlotRectTransform.GetComponent<Button_UI>().ClickFunc = () =>
+            {
+                // Use item
+            };
+            itemSlotRectTransform.GetComponent<Button_UI>().MouseRightClickFunc = () =>
+            {
+                _inventory.RemoveItem(item);
+            };
+
+            itemSlotRectTransform.anchoredPosition = new Vector2(x * itemSlotCellSizeX, y * itemSlotCellSizeY);
+
+            Image image = itemSlotRectTransform.GetComponent<Image>();
+            image.sprite = item.itemSprite;
+
+            Text amountTxt = itemSlotRectTransform.Find("Amount_txt").GetComponent<Text>();
+            if (item.amount > 1)
+            {
+                amountTxt.text = item.amount.ToString();
+            }
+            else
+            {
+                amountTxt.text = "";
+            }
+            
+
+            x++;
+            if (x > 4)
+            {
+                x = 0;
+                y++;
+            }
+
+        }
     }
 
-    public Image[] GetItemImageList()
-    {
-        return _itemImages;
-    }
 
-
-
-
- 
 }
