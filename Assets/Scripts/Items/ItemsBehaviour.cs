@@ -50,17 +50,32 @@ public class ItemsBehaviour : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(_cam.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             
 
-            if (hit.collider != null && hit.collider.tag == "Item") // This tag is causing issues for the next line. It adds _items whichever is first in the hierarchy no matter which object was clicked. 
+            if (hit.collider != null && hit.collider.tag == "Item") // This line causes issue, needs to be more specific about which item is clicked.
             {
                 Items clickedItem = hit.collider.gameObject.GetComponent<ItemsBehaviour>()._items;
                 _inventory.AddItem(clickedItem);
-                Destroy(hit.collider.gameObject);
-                _gameManager.spawnedItemCount--; // Subtracts itemsCreated counter, which is used to control game sequence changes in GameManger.
-
-                if (_gameManager.spawnedItemCount < 1)
+                if (_inventory.canDestroyItem)
                 {
-                    _gameManager.itemsCollected = true; // This needs to be changed to change the bool value via method
+                    Destroy(hit.collider.gameObject);
+                    _inventory.canDestroyItem = false;
+                    _gameManager.spawnedItemCount--; // Subtracts itemsCreated counter, which is used to control game sequence changes in GameManger.
+
+                    if (_gameManager.spawnedItemCount < 1)
+                    {
+                        _gameManager.itemsCollected = true; // This needs to be changed to change the bool value via method
+                    }
                 }
+                else if (_inventory.isInventorySpaceFull)
+                {
+                    Debug.Log("Cannot add item. No space in inventory");
+                }
+                else if (_inventory.isCarryingCapacityFull)
+                {
+                    Debug.Log("Cannot add item. Cannot carry more");
+                }
+                
+
+
             }
 
         }
